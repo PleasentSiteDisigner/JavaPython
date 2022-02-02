@@ -15,9 +15,8 @@ public class Task4 {
                     a[i + 1] = a[i];
                     a[i] = k;
                 }
-                System.out.println(Arrays.toString(a));
             }
         }
-
+        System.out.println(Arrays.toString(a));
     }
 }

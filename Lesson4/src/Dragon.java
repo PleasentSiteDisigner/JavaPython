@@ -2,7 +2,7 @@ public class Dragon extends Unit {
     public int flySpeed;
 
     public Dragon(String name, int hp, int offense, int defense, int flySpeed, Arts arms, Arts armor) {
-        super(name, hp, offense, defense, arms, armor);
+        super(name, hp, offense, defense);
         this.flySpeed = flySpeed;
     }
 

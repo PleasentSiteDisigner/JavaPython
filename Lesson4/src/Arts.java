@@ -1,17 +1,14 @@
 public class Arts {
     public String name;
-//    public int offense;
+    public int stat;
 //    public int defense;
     public int strength;
-    public static int idSt = 0;
-    public int id;
 
-    public Arts(String name, int strength) {
+    public Arts(String name, int stat, int strength) {
         this.name = name;
-//        this.defense = defense;
-//        this.offense = offense;
+//        this.defense = 0;
+        this.stat = stat;
         this.strength = strength;
-        this.id = idSt++;
     }
 
     public void isStrenght() {
@@ -20,6 +17,24 @@ public class Arts {
         }
     }
 
+    public int incStat() {
+        if (this.name != "" && this.strength > 0){
+            this.strength--;
+            this.isStrenght();
+            return this.stat;
+        } else {
+            return 0;
+        }
+    }
 
+//    public int incDef() {
+//        this.isStrenght();
+//        if (this.name != "" && this.strength > 0){
+//            this.strength--;
+//            return this.defense;
+//        } else {
+//            return 0;
+//        }
+//    }
 
 }

@@ -3,18 +3,16 @@ public class Unit {
     public int hp;
     public int offense;
     public int defense;
-    public Arts arms;
-    public Arts armor;
-    public int[] robe = {0, 0};
-    public int[] bag = {0, 0, 0, 0};
+    public Arts[] robe;
+    public Arts[] bag;
 
-    public Unit(String name, int hp, int offense, int defense, Arts arms, Arts armor) {
+    public Unit(String name, int hp, int offense, int defense) {
         this.name = name;
         this.hp = hp;
         this.offense = offense;
         this.defense = defense;
-        this.arms = arms;
-        this.armor = armor;
+        this.robe = new Arts[2];
+        this.bag = new Arts[4];
         System.out.println(name + " HP: " + hp);
     }
 
@@ -23,11 +21,25 @@ public class Unit {
 //        if (weapon) {
 //            resultOffense = arms.offense + offense;
 //        }
-        int damage = offense + arms.incAttack() - target.defense - target.armor.incDef();
+        int damage = offense + robe[0].incStat() - target.defense - target.robe[1].incStat();
         if (damage > 0) {
             target.hp -= damage;
             System.out.println(name + " наносит " + damage + " единиц урона.");
-            target.isAlive();
+            if (target.isAlive() == false) {
+                for (int i = 0; i < 4; i++ ) {
+                    if (bag[i] == null) {
+                        if (target.robe[0] != null) {
+                            bag[i] = target.robe[0];
+                            target.robe[0] = null;
+                            System.out.println(name + " забирает в сумку " + bag[i].name);
+                        } else if (target.robe[1] != null) {
+                            bag[i] = target.robe[1];
+                            target.robe[1] = null;
+                            System.out.println(name + " забирает в сумку " + bag[i].name);
+                        }
+                    }
+                }
+            }
         } else
             System.out.println(name + " не причиняет урона " + target.name + "!");
     }
@@ -42,11 +54,13 @@ public class Unit {
 //            System.out.println(name + " не причиняет урона " + target.name + "!");
 //    }
 
-    public void isAlive() {
+    public boolean isAlive() {
         if (hp <= 0) {
             System.out.println(name + " погибает.");
+            return false;
         } else
             System.out.println("Здоровье " + name + " становится " + hp + ".");
+        return true;
     }
 
     public static void info() {

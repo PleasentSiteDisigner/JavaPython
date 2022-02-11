@@ -1,25 +1,20 @@
 public class Dragon extends Unit {
     public int flySpeed;
 
-    public Dragon(String name, int hp, int offense, int defense, int flySpeed, Arts arms, Arts armor) {
+    public Dragon(String name, int hp, int offense, int defense, int flySpeed) {
         super(name, hp, offense, defense);
         this.flySpeed = flySpeed;
     }
 
-//    public void attack(Unit target) {
-//        int damage = offense - target.defense;
-//        if (damage > 0) {
-//            System.out.println(name + " наносит " + damage + " единиц урона");
-//            System.out.println("Здоровье " + target.name + " становится " + (target.hp - damage));
-//        } else
-//            System.out.println(name + " не причиняет урона " + target.name + "!");
-//    }
-
     public void fly() {
-        System.out.println("Летающее существо");
+        System.out.println(name + " улетает");
     }
 
-    public void fireBreathe() {
-        System.out.println("Дыхание дракона");
+    public void fireBreathe(Unit target) {
+        int k = offense;
+        System.out.println(name + " дышит огнем!");
+        offense = (int) (offense * 1.5);
+        this.attack(target);
+        offense = k;
     }
 }
